@@ -1,0 +1,97 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pets API",
+    "version": "1.0.0",
+    "description": "API for retrieving pets."
+  },
+  "paths": {
+    "/pets": {
+      "get": {
+        "summary": "List all pets",
+        "tags": ["Pets"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "species",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter pets by species"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": ["name"]
+            },
+            "description": "Sort pets by a specific field"
+          },
+          {
+            "in": "query",
+            "name": "sortOrder",
+            "schema": {
+              "type": "string",
+              "enum": ["asc", "desc"]
+            },
+            "description": "Sort order (ascending or descending)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of pets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetPetsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GetPetsResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The pet's unique ID."
+          },
+          "dateAdded": {
+            "type": "string",
+            "description": "The date the pet was added.",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string",
+            "description": "The pet's name."
+          },
+          "photoUrl": {
+            "type": "string",
+            "description": "URL of the pet image."
+          },
+          "species": {
+            "type": "string",
+            "description": "The pet's species."
+          },
+          "available": {
+            "type": "boolean",
+            "description": "Whether the pet is available or not."
+          },
+          "birthYear": {
+            "type": "integer",
+            "description": "The pet's birth year."
+          }
+        }
+      }
+    }
+  }
+}
