@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Open_Sans } from 'next/font/google';
 
 import Footer from '@/components/Footer';
@@ -27,6 +28,7 @@ export default function RootLayout({
         <footer>
           <Footer />
         </footer>
+        <SpeedInsights />
       </body>
     </html>
   );
